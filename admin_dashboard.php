@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
     header("Location: login.php");
     exit();
@@ -8,189 +9,173 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Admin Dashboard</title>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
 
- <!-- Local Bootstrap CSS -->
- <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 
- <!-- Custom Styles -->
- <style>
- body {
-  background-color: #f4f7fc;
-  font-family: Arial, sans-serif;
- }
+<style>
+body {
+    background: #f4f6f9;
+    font-family: Arial, sans-serif;
+}
 
- .dashboard-header {
-  background-color: #212529;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  position: relative;
- }
+.header {
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
 
- .logout-btn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
- }
+.logout {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
 
- .card {
-  margin: 15px 0;
-  transition: transform 0.3s ease-in-out;
- }
+.card-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    height: 100%;
+}
 
- .card:hover {
-  transform: scale(1.05);
- }
+.card-box:hover {
+    transform: translateY(-5px);
+}
 
- .footer {
-  text-align: center;
-  margin-top: 30px;
-  padding: 15px;
-  background: #343a40;
-  color: white;
-  font-size: 14px;
- }
+.icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
 
- .container {
-  margin-top: 30px;
- }
- </style>
+.title {
+    font-weight: bold;
+}
+
+.desc {
+    font-size: 14px;
+    color: gray;
+}
+a {
+    text-decoration: none;
+}
+</style>
 </head>
 
 <body>
 
- <!-- Header -->
- <div class="dashboard-header">
-  <h1>Admin Dashboard</h1>
-  <p>Welcome, <strong><?php echo htmlspecialchars($_SESSION['name']); ?></strong></p>
-  <a href="logout.php" class="btn btn-danger logout-btn">Logout</a>
- </div>
-
-
- <div class="container">
-  <div class="row">
-   <!-- Customers Management -->
-   <div class="col-md-4">
-    <div class="card border-primary shadow">
-     <div class="card-header bg-primary text-white">Customers Management</div>
-     <div class="card-body">
-      <p>Manage Customers, view details.</p>
-      <a href="manage_users.php" class="btn btn-primary">Go to Customers Management</a>
-     </div>
-    </div>
-   </div>
-
-   <!-- Suppliers/Venders Management -->
-   <div class="col-md-4">
-    <div class="card border-primary shadow">
-     <div class="card-header bg-primary text-white">Suppliers/Venders Management</div>
-     <div class="card-body">
-      <p>Manage Suppliers/Venders, view details.</p>
-      <a href="manage_vendors.php" class="btn btn-primary">Go to Suppliers/Venders Management</a>
-     </div>
-    </div>
-   </div>
-
-
-   <!-- Charts of Accounts Management -->
-   <div class="col-md-4">
-    <div class="card border-primary shadow">
-     <div class="card-header bg-primary text-white">Charts of Accounts Management</div>
-     <div class="card-body">
-      <p>Manage Charts of Accounts, view details.</p>
-      <a href="manage_charts_of_accounts.php" class="btn btn-primary">Go to Charts of Accounts Management</a>
-     </div>
-    </div>
-   </div>
-
-   <div class="container">
-    <div class="row">
-     <!-- User Management -->
-     <div class="col-md-4">
-      <div class="card border-primary shadow">
-       <div class="card-header bg-primary text-white">User Management</div>
-       <div class="card-body">
-        <p>Manage users, view details, and assign roles.</p>
-        <a href="manage_users.php" class="btn btn-primary">Go to User Management</a>
-       </div>
-      </div>
-     </div>
-
-     <!-- Staff Management -->
-     <div class="col-md-4">
-      <div class="card border-success shadow">
-       <div class="card-header bg-success text-white">Staff/Employees Management</div>
-       <div class="card-body">
-        <p>Manage staff details and assign inventory tasks.</p>
-        <a href="manage_staff.php" class="btn btn-success">Go to Staff Management</a>
-       </div>
-      </div>
-     </div>
-
-     <!-- Inventory Management -->
-     <div class="col-md-4">
-      <div class="card border-warning shadow">
-       <div class="card-header bg-warning text-dark">Inventory Management</div>
-       <div class="card-body">
-        <p>Track inventory, manage stock, and generate reports.</p>
-        <a href="manage_inventory.php" class="btn btn-warning">Go to Inventory Management</a>
-       </div>
-      </div>
-     </div>
-    </div>
-
-
-
-
-    <div class="row">
-     <!-- Reports -->
-     <div class="col-md-4">
-      <div class="card border-info shadow">
-       <div class="card-header bg-info text-white">Reports</div>
-       <div class="card-body">
-        <p>Generate and view detailed reports of the system.</p>
-        <a href="generate_report-1.php" class="btn btn-info">View Reports</a>
-       </div>
-      </div>
-     </div>
-
-     <!-- Settings -->
-     <div class="col-md-4">
-      <div class="card border-secondary shadow">
-       <div class="card-header bg-secondary text-white">Settings</div>
-       <div class="card-body">
-        <p>Configure system settings and user permissions.</p>
-        <a href="settings.php" class="btn btn-secondary">Go to Settings</a>
-       </div>
-      </div>
-     </div>
-
-     <!-- Activity Log -->
-     <div class="col-md-4">
-      <div class="card border-danger shadow">
-       <div class="card-header bg-danger text-white">Activity Log</div>
-       <div class="card-body">
-        <p>View and track system activity logs.</p>
-        <a href="activity_log.php" class="btn btn-danger">View Logs</a>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
+<div class="header">
+    <h2>Admin Dashboard</h2>
+    <p>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?></p>
+    <a class="btn btn-danger logout" href="logout.php">Logout</a>
 </div>
-</div>
-   <!-- Footer -->
-   <div class="footer">
-    &copy; <?php echo date("Y"); ?> Inventory Management System | All Rights Reserved.
-   </div>
 
-   <!-- Local Bootstrap JS -->
-   <script src="js/bootstrap.bundle.min.js"></script>
+<div class="container mt-4">
+
+<div class="row g-3">
+
+    <div class="col-md-4">
+        <a href="manage_users.php">
+        <div class="card-box">
+            <div class="icon">👥</div>
+            <div class="title">Customers</div>
+            <div class="desc">Manage customers & details</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="manage_vendors.php">
+        <div class="card-box">
+            <div class="icon">🚚</div>
+            <div class="title">Suppliers / Vendors</div>
+            <div class="desc">Manage suppliers & vendors</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="manage_charts_of_accounts.php">
+        <div class="card-box">
+            <div class="icon">📊</div>
+            <div class="title">Chart of Accounts</div>
+            <div class="desc">Financial account management</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="manage_users.php">
+        <div class="card-box">
+            <div class="icon">👤</div>
+            <div class="title">User Management</div>
+            <div class="desc">Roles & permissions</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="manage_staff.php">
+        <div class="card-box">
+            <div class="icon">🧑‍💼</div>
+            <div class="title">Staff</div>
+            <div class="desc">Employees management</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="manage_inventory.php">
+        <div class="card-box">
+            <div class="icon">📦</div>
+            <div class="title">Inventory</div>
+            <div class="desc">Stock tracking system</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="generate_report-1.php">
+        <div class="card-box">
+            <div class="icon">📑</div>
+            <div class="title">Reports</div>
+            <div class="desc">System reports</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="settings.php">
+        <div class="card-box">
+            <div class="icon">⚙️</div>
+            <div class="title">Settings</div>
+            <div class="desc">System configuration</div>
+        </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="activity_log.php">
+        <div class="card-box">
+            <div class="icon">📜</div>
+            <div class="title">Activity Log</div>
+            <div class="desc">System tracking</div>
+        </div>
+        </a>
+    </div>
+
+</div>
+
+</div>
+
+<div class="text-center mt-4 text-muted">
+© <?php echo date("Y"); ?> Inventory Management System
+</div>
+
 </body>
-
 </html>

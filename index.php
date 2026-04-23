@@ -1,98 +1,134 @@
 <?php include 'header.php'; ?>
 
 <style>
-/* Hero Section Styles */
+/* ================= HERO SECTION ================= */
 .hero {
     display: flex;
-   
     align-items: center;
     justify-content: space-between;
-    padding: 50px 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/OIP (1).jpeg') center/cover no-repeat;
+    padding: 80px 60px;
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('assets/images/OIP (1).jpeg') center/cover no-repeat;
     color: white;
-    min-height: 80vh;
+    min-height: 85vh;
 }
 
-.hero-content { 
-    
-    max-width: 50%;
-    text-align: left;
+/* TEXT AREA */
+.hero-content {
+    max-width: 55%;
 }
 
 .hero-content h1 {
-    font-size: 3em;
-    font-weight: bold;
+    font-size: 42px;
+    font-weight: 700;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    line-height: 1.3;
 }
 
 .hero-content p {
-    font-size: 1.5em;
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.9;
     margin-bottom: 30px;
-    line-height: 1.6;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.hero-image {
-    
-    max-width: 40%;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-/* Buttons */
-.hero-content a {
+/* BUTTON */
+.hero-content .btn-primary {
     display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.2em;
+    padding: 12px 25px;
+    background: #0d6efd;
     color: white;
-    background-color: #007BFF;
-    border-radius: 5px;
+    border-radius: 6px;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    font-weight: 500;
 }
 
-.hero-content a:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+.hero-content .btn-primary:hover {
+    background: #084298;
+    transform: translateY(-2px);
 }
 
-.hero-content a.active {
+/* SECOND BUTTON */
+.hero-content .btn-outline {
     margin-left: 10px;
+    padding: 12px 25px;
+    border: 1px solid white;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* Responsive Design */
+.hero-content .btn-outline:hover {
+    background: white;
+    color: black;
+}
+
+/* RIGHT SIDE IMAGE (OPTIONAL FUTURE ERP DASHBOARD MOCKUP) */
+.hero-image {
+    max-width: 40%;
+}
+
+/* ================= ABOUT SECTION ================= */
+.about-products {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.about-products a {
+    background: #198754;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.about-products a:hover {
+    background: #146c43;
+}
+
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
     .hero {
         flex-direction: column;
         text-align: center;
+        padding: 50px 20px;
     }
 
     .hero-content {
         max-width: 100%;
-        margin-bottom: 20px;
     }
 
     .hero-image {
-        
-        max-width: 80%;
+        display: none;
     }
 }
 </style>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
-    <div class="hero-content">
-        <h1>Welcome to ABC Drinking Water Company</h1>
-        <p>Your trusted source for clean, safe, and refreshing drinking water.</p>
-    </div>
-   
-</section>
-<section class="about-products">
-    <a href="products.php" class="btn">Explore Our Products</a>
-   
-</section >
-<?php include 'footer.php'; ?>
 
- 
-   
+    <div class="hero-content">
+        <h1>ABC Drinking Water ERP System</h1>
+        <p>
+            A complete enterprise resource planning system for managing sales, inventory, 
+            accounting, HR, and reporting in one centralized platform.
+        </p>
+
+        <a href="login.php" class="btn-primary">Login to System</a>
+        <a href="products.php" class="btn-outline">View Products</a>
+    </div>
+
+</section>
+
+<!-- ================= ABOUT / CTA ================= -->
+<section class="about-products">
+    <h3>Start Managing Your Business Smarter</h3>
+    <p>Track sales, inventory, staff, and financial reports in real time.</p>
+    <br>
+    <a href="products.php">Explore Our Products</a>
+</section>
+
+<?php include 'footer.php'; ?>

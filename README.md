@@ -73,3 +73,46 @@ Developed by: Habtom
 This project is for educational and business use. All rights reserved © 2026.
 
 ## 📁 Project Structure
+ABC-Drinking-water-dev/
+│
+├── index.php              ← ENTRY POINT (VERY IMPORTANT)
+├── login.php
+├── logout.php
+│
+├── includes/
+│   ├── db.php
+│   ├── auth.php
+│   └── layout.php        ← ODOO UI SYSTEM (SIDEBAR + TOPBAR)
+│
+├── modules/
+│   ├── admin/
+│   │   └── views/
+│   │       └── dashboard.php   ← ADMIN DASHBOARD CONTENT ONLY
+│   │
+│   ├── sales/
+│   ├── inventory/
+│   ├── hr/
+│   ├── accounting/
+│   └── users/
+│
+└── assets/
+
+revised ABC-Drinking-water-dev/
+│
+├── includes/
+│   ├── db.php
+│   ├── auth.php
+│   └── layout.php   ← Odoo UI engine
+│
+├── modules/
+│   ├── admin/
+│   │   └── views/
+│   │       └── dashboard.php
+│   ├── sales/
+│   ├── inventory/
+│   ├── purchases/
+│   └── hr/
+│
+├── login.php
+├── process_login.php
+└── admin_dashboard.php (optional redirect only)
