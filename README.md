@@ -27,7 +27,49 @@ This system is designed to manage all core business processes of ABC Drinking Wa
 - JavaScript / jQuery
 - DataTables
 - Font Awesome
+📊 Key Features
+👨‍💼 HR Module
+Add / Edit / Delete staff
+Staff history tracking
+Payroll management
+Performance evaluation
+📦 Inventory Module
+Stock management
+Product tracking
+Inventory reports
+Low stock alerts
+💰 Sales Module
+Invoice generation
+Sales records
+Customer tracking
+Reports export (Excel/PDF)
+🧾 Accounting Module
+General ledger
+Cash flow reports
+Bank reconciliation
+Financial statements
+📈 Reports System
+Sales reports (daily/monthly/yearly)
+Inventory reports
+Staff performance reports
+Export to Excel / PDF / Print
+🛠️ Security Features
+Session-based authentication
+Role-based access control (Admin / Staff)
+Password hashing
+SQL injection protection (prepared statements)
+📌 Future Improvements
+API integration
+Mobile app version
+Advanced dashboard analytics
+Cloud deployment
+Multi-branch support
+👨‍💻 Developer
 
----
+Developed by: Habtom
+
+📄 License
+
+This project is for educational and business use. All rights reserved © 2026.
 
 ## 📁 Project Structure
