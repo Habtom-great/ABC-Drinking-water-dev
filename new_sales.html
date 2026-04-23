@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .page-title h4 {
+            color: #343a40;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .page-title h6 {
+            color: #6c757d;
+        }
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-sales-split h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #495057;
+        }
+        .card-sales-split ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+        .card-sales-split ul li img {
+            width: 24px;
+            height: 24px;
+        }
+        .invoice-box table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border-collapse: separate;
+        }
+        .invoice-box table thead {
+            background: #343a40;
+            color: white;
+        }
+        .invoice-box table tbody tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+        .invoice-box table tbody tr:last-child {
+            border-bottom: none;
+        }
+        .invoice-box table td {
+            padding: 12px;
+            color: #495057;
+        }
+        .form-group label {
+            font-size: 14px;
+            color: #495057;
+        }
+        .form-group input {
+            height: 35px;
+            font-size: 14px;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+        .form-group input[readonly] {
+            background-color: #e9ecef;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .btn-danger {
+            background-color: #f44336;
+            border-color: #f44336;
+        }
+        .btn-danger:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h4>Sale Details</h4>
+                        <h6>View sale details</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Sale Info and Actions -->
+                        <div class="card-sales-split mb-4 d-flex justify-content-between align-items-center">
+                            <h2>Sale Detail: SL0101</h2>
+                            <ul>
+                                <li><a href="#"><img src="assets/img/icons/edit.svg" alt="Edit"></a></li>
+                                <li><a href="#"><img src="assets/img/icons/pdf.svg" alt="PDF"></a></li>
+                                <li><a href="#"><img src="assets/img/icons/excel.svg" alt="Excel"></a></li>
+                                <li><a href="#"><img src="assets/img/icons/printer.svg" alt="Print"></a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Invoice Table -->
+                        <div class="invoice-box">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>QTY</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>TAX</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/img/product/product1.jpg" alt="Macbook Pro" style="width: 40px; height: 40px; margin-right: 10px;">
+                                                Macbook Pro
+                                            </div>
+                                        </td>
+                                        <td>1.00</td>
+                                        <td>1500.00</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1500.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/img/product/product7.jpg" alt="Apple Earpods" style="width: 40px; height: 40px; margin-right: 10px;">
+                                                Apple Earpods
+                                            </div>
+                                        </td>
+                                        <td>1.00</td>
+                                        <td>2000.00</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>2000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/img/product/product8.jpg" alt="Samsung" style="width: 40px; height: 40px; margin-right: 10px;">
+                                                Samsung
+                                            </div>
+                                        </td>
+                                        <td>1.00</td>
+                                        <td>8000.00</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>8000.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Summary Section -->
+                        <div class="row my-4">
+                            <div class="col-lg-3 col-sm-6 mb-3">
+                                <div class="form-group">
+                                    <label>Order Tax</label>
+                                    <input type="text" class="form-control" value="0.00">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 mb-3">
+                                <div class="form-group">
+                                    <label>Discount</label>
+                                    <input type="text" class="form-control" value="0.00">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 mb-3">
+                                <div class="form-group">
+                                    <label>Shipping</label>
+                                    <input type="text" class="form-control" value="0.00">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 mb-3">
+                                <div class="form-group">
+                                    <label>Grand Total</label>
+                                    <input type="text" class="form-control" value="1000.00" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="text-end">
+                            <button class="btn btn-primary btn-sm me-2" type="button">Submit</button>
+                            <button class="btn btn-danger btn-sm" type="button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

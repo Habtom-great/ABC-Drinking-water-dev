@@ -1,0 +1,17 @@
+{
+    "name": "bys/abc-company",
+    "autoload": {
+        "psr-4": {
+            "Bys\\AbcCompany\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Habtoma",
+            "email": "habtoma321@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    }
+}

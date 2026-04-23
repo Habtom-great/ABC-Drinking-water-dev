@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ledger Accounts</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .ledger-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .ledger {
+        border: 1px solid #333;
+        padding: 10px;
+        width: 48%;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #666;
+        padding: 5px;
+        text-align: right;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      td.left {
+        text-align: left;
+      }
+      h3 {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>General Ledger Accounts</h1>
+    <div class="ledger-container">
+      <!-- Cash Ledger -->
+      <div class="ledger">
+        <h3>1101 - Cash</h3>
+        <table>
+          <tr>
+            <th>Date</th>
+            <th class="left">Description</th>
+            <th>PR</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th>Balance</th>
+          </tr>
+          <tr>
+            <td>Mar 1</td>
+            <td class="left">Capital</td>
+            <td></td>
+            <td>100,000.00</td>
+            <td>-</td>
+            <td>100,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 2</td>
+            <td class="left">Office Equipment</td>
+            <td></td>
+            <td>-</td>
+            <td>25,000.00</td>
+            <td>75,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 4</td>
+            <td class="left">Bank Loan</td>
+            <td></td>
+            <td>30,000.00</td>
+            <td>-</td>
+            <td>105,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 5</td>
+            <td class="left">Rent Expense</td>
+            <td></td>
+            <td>-</td>
+            <td>5,000.00</td>
+            <td>100,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 10</td>
+            <td class="left">Service Revenue</td>
+            <td></td>
+            <td>12,000.00</td>
+            <td>-</td>
+            <td>112,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 18</td>
+            <td class="left">Salaries Expense</td>
+            <td></td>
+            <td>-</td>
+            <td>6,000.00</td>
+            <td>106,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 22</td>
+            <td class="left">Accounts Receivable</td>
+            <td></td>
+            <td>5,000.00</td>
+            <td>-</td>
+            <td>111,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 25</td>
+            <td class="left">Accounts Payable</td>
+            <td></td>
+            <td>-</td>
+            <td>2,000.00</td>
+            <td>109,000.00</td>
+          </tr>
+          <tr>
+            <td>Mar 28</td>
+            <td class="left">Owner’s Drawing</td>
+            <td></td>
+            <td>-</td>
+            <td>3,000.00</td>
+            <td>106,000.00</td>
+          </tr>
+          <tr>
+            <td colspan="3"><strong>Total</strong></td>
+            <td><strong>147,000.00</strong></td>
+            <td><strong>41,000.00</strong></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Add more ledgers here similarly: Office Equipment, Rent Expense, etc. -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Sidebar Style */
+        .sidebar {
+            height: 100vh;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+        .content-area {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .nav-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3 class="text-center text-white">Admin Dashboard</h3>
+        <ul class="list-unstyled">
+            <li><a href="#">My Profile Settings</a></li>
+            <li><a href="#">Logout</a></li>
+            <hr>
+            <h5 class="text-white">Product Management</h5>
+            <li><a href="#">Product List</a></li>
+            <li><a href="#">Add Product</a></li>
+            <li><a href="#">Category List</a></li>
+            <li><a href="#">Add Category</a></li>
+            <li><a href="#">Sub Category List</a></li>
+            <li><a href="#">Add Sub Category</a></li>
+            <li><a href="#">Brand List</a></li>
+            <li><a href="#">Add Brand</a></li>
+            <li><a href="#">Import Products</a></li>
+            <li><a href="#">Print Barcode</a></li>
+            <hr>
+            <h5 class="text-white">Sales</h5>
+            <li><a href="#">Sales List</a></li>
+            <li><a href="#">POS</a></li>
+            <li><a href="#">New Sales</a></li>
+            <li><a href="#">Sales Return List</a></li>
+            <li><a href="#">New Sales Return</a></li>
+            <hr>
+            <h5 class="text-white">Purchase</h5>
+            <li><a href="#">Purchase List</a></li>
+            <li><a href="#">Add Purchase</a></li>
+            <li><a href="#">Import Purchase</a></li>
+            <hr>
+            <h5 class="text-white">Expense</h5>
+            <li><a href="#">Expense List</a></li>
+            <li><a href="#">Add Expense</a></li>
+            <li><a href="#">Expense Category</a></li>
+            <hr>
+            <h5 class="text-white">Quotation</h5>
+            <li><a href="#">Quotation List</a></li>
+            <li><a href="#">Add Quotation</a></li>
+            <hr>
+            <h5 class="text-white">Transfer</h5>
+            <li><a href="#">Transfer List</a></li>
+            <li><a href="#">Add Transfer</a></li>
+            <li><a href="#">Import Transfer</a></li>
+            <hr>
+            <h5 class="text-white">Return</h5>
+            <li><a href="#">Sales Return List</a></li>
+            <li><a href="#">Add Sales Return</a></li>
+            <li><a href="#">Purchase Return List</a></li>
+            <li><a href="#">Add Purchase Return</a></li>
+            <hr>
+            <h5 class="text-white">People</h5>
+            <li><a href="#">Customer List</a></li>
+            <li><a href="#">Add Customer</a></li>
+            <li><a href="#">Supplier List</a></li>
+            <li><a href="#">Add Supplier</a></li>
+            <li><a href="#">User List</a></li>
+            <li><a href="#">Add User</a></li>
+            <li><a href="#">Store List</a></li>
+            <li><a href="#">Add Store</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+        <h2>Dashboard</h2>
+        <p>Welcome to the admin dashboard. Here you can manage products, sales, purchases, expenses, customers, and more.</p>
+        <!-- You can add more content here based on the selected option from the sidebar -->
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

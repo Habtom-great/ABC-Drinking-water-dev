@@ -1,0 +1,31 @@
+/vendor/
+
+# Ignore uploads folder
+uploads/
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore log files
+*.log
+
+# Ignore zip or temporary files
+*.zip
+*.tmp
+
+# Ignore composer files (if you’re using composer)
+composer.lock
+
+# Ignore backup files from editors
+*.save
+*.swp
+*~
+
+# Ignore phpstorm or vscode project files
+.idea/
+.vscode/
+
+# Ignore cache
+cache/
+tmp/
+

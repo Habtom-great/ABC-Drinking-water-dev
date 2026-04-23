@@ -1,0 +1,538 @@
+<?php
+include "db.php";
+
+/* =========================
+   KPI QUERIES (LIVE DATA)
+========================= */
+
+// Total Sales
+$sales = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(total_amount) as total_sales FROM sales"));
+$total_sales = $sales['total_sales'] ?? 0;
+
+// Total Products
+$products = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total_products FROM products"));
+$total_products = $products['total_products'] ?? 0;
+
+// Total Customers (using users as fallback if no customers table)
+$customers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total_customers FROM users"));
+$total_customers = $customers['total_customers'] ?? 0;
+
+// Low Stock Items
+$low_stock = mysqli_fetch_assoc(mysqli_query($conn, "
+    SELECT COUNT(*) as low_stock 
+    FROM products 
+    WHERE stock_quantity <= 5
+"));
+$total_low_stock = $low_stock['low_stock'] ?? 0;
+
+// Total Suppliers
+$suppliers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total_suppliers FROM vendors"));
+$total_suppliers = $suppliers['total_suppliers'] ?? 0;
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ERP Dashboard</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body { background:#f4f6f9; }
+        .card-kpi {
+            border-radius:12px;
+            padding:20px;
+            color:#fff;
+        }
+        .bg1{background:#4e73df;}
+        .bg2{background:#1cc88a;}
+        .bg3{background:#36b9cc;}
+        .bg4{background:#f6c23e;}
+        .bg5{background:#e74a3b;}
+        .module-card{
+            background:#fff;
+            padding:20px;
+            border-radius:12px;
+            text-align:center;
+            transition:0.3s;
+        }
+        .module-card:hover{
+            transform:scale(1.05);
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid mt-4">
+
+    <h3>🚀 ERP Dashboard - Welcome Admin</h3>
+
+    <!-- KPI CARDS -->
+    <div class="row mt-3">
+
+        <div class="col-md-3">
+            <div class="card-kpi bg1">
+                <h5>Total Sales</h5>
+                <h3><?= number_format($total_sales,2) ?></h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-kpi bg2">
+                <h5>Products</h5>
+                <h3><?= $total_products ?></h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-kpi bg3">
+                <h5>Customers</h5>
+                <h3><?= $total_customers ?></h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-kpi bg4">
+                <h5>Low Stock</h5>
+                <h3><?= $total_low_stock ?></h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODULES -->
+    <h4 class="mt-5">📦 ERP Modules</h4>
+
+    <div class="row mt-3">
+
+        <div class="col-md-3">
+            <div class="module-card" onclick="location.href='products.php'">
+                👕<br>Products
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="module-card" onclick="location.href='cash_sales.php'">
+                💰<br>Sales
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="module-card" onclick="location.href='manage_vendors.php'">
+                🏢<br>Vendors
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="module-card" onclick="location.href='manage_users.php'">
+                👤<br>Users
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CHART -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card p-4">
+                <h5>📊 Sales Overview</h5>
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const ctx = document.getElementById('salesChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+        datasets: [{
+            label: 'Sales',
+            data: [1200, 1900, 3000, 5000, 2000, 3000, 4000],
+            backgroundColor: '#4e73df'
+        }]
+    }
+});
+</script>
+
+</body>
+</html>
+kkkkk
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .dashboard-header {
+      background-color: #343a40;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .category-card, .budget-card, .analysis-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .category-card:hover, .budget-card:hover, .analysis-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .card-icon {
+      font-size: 2rem;
+      color: #007bff;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .analysis-section, .settings-section {
+      background-color: #e9ecef;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 8px;
+    }
+    .section-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #343a40;
+      margin-bottom: 20px;
+    }
+    .analysis-card-body {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <h1>Welcome to the Professional Dashboard</h1>
+    <p>Manage your business efficiently with integrated tools for products, sales, purchases, customers, and more.</p>
+  </header>
+
+  <!-- Dashboard Categories -->
+  <div class="container my-5">
+    <div class="row g-4">
+      
+      <!-- Product Management -->
+      <div class="col-md-3">
+        <div class="card text-center category-card p-3">
+          <i class="fas fa-box card-icon"></i>
+          <div class="card-body">
+            <h5 class="card-title">Product Management</h5>
+            <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage Products</button>
+            <ul class="dropdown-menu">
+              <li><a href="product_list.php" class="dropdown-item">Product List</a></li>
+              <li><a href="add_product.php" class="dropdown-item">Add Product</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sales Management -->
+      <div class="col-md-3">
+        <div class="card text-center category-card p-3">
+          <i class="fas fa-shopping-cart card-icon"></i>
+          <div class="card-body">
+            <h5 class="card-title">Sales Management</h5>
+            <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage Sales</button>
+            <ul class="dropdown-menu">
+              <li><a href="sales_list.php" class="dropdown-item">Sales List</a></li>
+              <li><a href="new_sales.php" class="dropdown-item">New Sales</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Management -->
+      <div class="col-md-3">
+        <div class="card text-center category-card p-3">
+          <i class="fas fa-users card-icon"></i>
+          <div class="card-body">
+            <h5 class="card-title">Customer Management</h5>
+            <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage Customers</button>
+            <ul class="dropdown-menu">
+              <li><a href="customer_list.php" class="dropdown-item">Customer List</a></li>
+              <li><a href="add_customer.php" class="dropdown-item">Add Customer</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Purchase Management -->
+      <div class="col-md-3">
+                <div class="card text-center category-card p-3">
+                  <i class="fas fa-truck card-icon"></i>
+                  <div class="card-body">
+                    <h5 class="card-title">Purchase Management</h5>
+                    <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage Purchases</button>
+                    <ul class="dropdown-menu">
+                      <li><a href="purchase_list.php" class="dropdown-item">Purchase List</a></li>
+                      <li><a href="add_purchase.php" class="dropdown-item">Add Purchase</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Expense Management -->
+              <div class="col-md-3">
+                <div class="card text-center category-card p-3">
+                  <i class="fas fa-wallet card-icon"></i>
+                  <div class="card-body">
+                    <h5 class="card-title">Expense Management</h5>
+                    <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage Expenses</button>
+                    <ul class="dropdown-menu">
+                      <li><a href="expense_list.php" class="dropdown-item">Expense List</a></li>
+                      <li><a href="add_expense.php" class="dropdown-item">Add Expense</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Quotation Management -->
+              <div class="col-md-3">
+                <div class="card text-center category-card p-3">
+                  <i class="fas fa-file-alt card-icon"></i>
+                  <div class="card-body">
+                    <h5 class="card-title">Quotation Management</h5>
+                    <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage Quotations</button>
+                    <ul class="dropdown-menu">
+                      <li><a href="quotation_list.php" class="dropdown-item">Quotation List</a></li>
+                      <li><a href="add_quotation.php" class="dropdown-item">Add Quotation</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- People Management -->
+              <div class="col-md-3">
+                <div class="card text-center category-card p-3">
+                  <i class="fas fa-users card-icon"></i>
+                  <div class="card-body">
+                    <h5 class="card-title">People Management</h5>
+                    <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage People</button>
+                    <ul class="dropdown-menu">
+                      <li><a href="customer_list.php" class="dropdown-item">Customer List</a></li>
+                      <li><a href="add_customer.php" class="dropdown-item">Add Customer</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        
+          
+      <!-- Report Management -->
+      <div class="col-md-3">
+                <div class="card text-center category-card p-3">
+                  <i class="fas fa-file-alt card-icon"></i>
+                  <div class="card-body">
+                    <h5 class="card-title">Report Management</h5>
+                    <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Generate Reports</button>
+                    <ul class="dropdown-menu">
+                      <li><a href="sales_report.php" class="dropdown-item">Sales Report</a></li>
+                      <li><a href="purchase_report.php" class="dropdown-item">Purchase Report</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        
+          <!-- Budget and Analysis Section -->
+          <div class="container budget-section">
+            <div class="row">
+              <!-- Budget Overview -->
+              <div class="col-md-6">
+                <div class="card budget-card p-3">
+                  <div class="card-body budget-card-body">
+                    <h5 class="budget-header">Budget Overview</h5>
+                    <p class="card-text">View the total budget, track allocations, and analyze financial performance.</p>
+                    <button class="btn btn-success">View Budget</button>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Financial Analysis -->
+              <div class="col-md-6">
+                <div class="card budget-card p-3">
+                  <div class="card-body budget-card-body">
+                    <h5 class="budget-header">Financial Analysis</h5>
+                    <p class="card-text">Analyze the financial trends, profit margins, and sales performance.</p>
+                    <button class="btn btn-info">View Analysis</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+       
+    </div>
+  </div>
+
+  <!-- Analysis Section -->
+  <div class="container analysis-section">
+    <h2 class="section-header">Aging Analysis</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card analysis-card p-3">
+          <div class="card-body analysis-card-body">
+            <h5 class="card-title">Receivables</h5>
+            <p class="card-text">Analyze aging of customer receivables and overdue balances.</p>
+            <button class="btn btn-info">View Analysis</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card analysis-card p-3">
+          <div class="card-body analysis-card-body">
+            <h5 class="card-title">Payables</h5>
+            <p class="card-text">Review aging of vendor payables and overdue payments.</p>
+            <button class="btn btn-warning">View Analysis</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Section -->
+  <div class="container settings-section">
+    <h2 class="section-header">Settings</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card settings-card p-3">
+          <div class="card-body analysis-card-body">
+            <h5 class="card-title">User Settings</h5>
+            <p class="card-text">Manage user accounts, roles, and permissions.</p>
+            <button class="btn btn-secondary">Manage Users</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card settings-card p-3">
+          <div class="card-body analysis-card-body">
+            <h5 class="card-title">System Preferences</h5>
+            <p class="card-text">Configure system-wide settings and preferences.</p>
+            <button class="btn btn-secondary">Configure System</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card settings-card p-3">
+          <div class="card-body analysis-card-body">
+            <h5 class="card-title">Notifications</h5>
+            <p class="card-text">Set up alerts and notification preferences.</p>
+            <button class="btn btn-secondary">Set Notifications</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .dashboard-header {
+      background-color: #343a40;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .category-card, .budget-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .category-card:hover, .budget-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .card-icon {
+      font-size: 2rem;
+      color: #007bff;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .budget-section {
+      background-color: #e9ecef;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 8px;
+    }
+    .budget-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #343a40;
+    }
+    .budget-card-body {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+ 
+<style>
+    body {
+  font-family: 'Arial', sans-serif;
+}
+
+#sidebar {
+  width: 60px;
+  min-height: 50vh;
+}
+
+.sidebar-header {
+  font-size: 1.1rem;
+  background-color: #212529;
+}
+
+.nav-link {
+  padding: 10px 15px;
+}
+
+.nav-link:hover {
+  background-color: #343a40;
+  color: #17a2b8;
+}
+
+.navbar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container-fluid {
+  padding-top: 1px;
+}
+            
+</style>
+<script>
+      document.getElementById('sidebarToggle').addEventListener('click', function () {
+  document.getElementById('sidebar').classList.toggle('d-none');
+});
+          
+</script>
